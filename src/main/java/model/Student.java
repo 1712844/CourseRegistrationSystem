@@ -1,30 +1,56 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "student")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;
+@Table(name = "Student")
+public class Student extends User {
+    @Column(name = "student_year")
+    private Integer studentYear;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @ManyToOne
+    @JoinColumn(name = "class_id", nullable = false)
+    private Class studentClass;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @ManyToMany(mappedBy = "listCourseStudents")
+    List<Course> listStudentCourses = new ArrayList<>();
 
-    @Column(name = "email")
-    private String email;
+    public Student(String userFirstName, String userLastName, String email, String role) {
+        super(userFirstName, userLastName, email, role);
+    }
 
-    @Column(name = "class")
-    private String student_class;
+    public Class getStudentClass() {
+        return studentClass;
+    }
 
-    @Column(name = "gender")
-    private String gender;
+    public void setStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
+    }
 
-    @Column(name = "year")
-    private String year;
+    public Integer getStudentYear() {
+        return studentYear;
+    }
+
+    public void setStudentYear(Integer studentYear) {
+        this.studentYear = studentYear;
+    }
+
+    public List<Course> getListStudentCourses() {
+        return listStudentCourses;
+    }
+
+    public void setListStudentCourses(List<Course> listStudentCourses) {
+        this.listStudentCourses = listStudentCourses;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                ", studentClass=" + studentClass +
+                ", studentYear=" + studentYear +
+                ", listStudentCourses=" + listStudentCourses +
+                '}';
+    }
 }

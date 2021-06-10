@@ -5,9 +5,9 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate_db?useSSL=false</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/courseregistrationsystem_db?useSSL=false</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
+        <property name="connection.password">lmfao#123</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
         <!-- Select our SQL dialect -->
@@ -24,6 +24,17 @@
         <property name="hibernate.dbcp.maxIdle">10</property>
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
+        <mapping class="model.Account" />
+        <mapping class="model.Class" />
+        <mapping class="model.Course" />
+        <mapping class="model.CourseRegistrationSession" />
+        <mapping class="model.Department" />
+        <mapping class="model.Room" />
+        <mapping class="model.Semester" />
+        <mapping class="model.Shift" />
+        <mapping class="model.Staff" />
         <mapping class="model.Student" />
+        <mapping class="model.Teacher" />
+        <mapping class="model.User" />
     </session-factory>
 </hibernate-configuration>
