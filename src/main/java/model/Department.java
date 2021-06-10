@@ -20,4 +20,13 @@ public class Department {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "courseDepartment")
     private List<Course> listDepartmentCourses = new ArrayList<>();
+
+    public Department(Long departmentId, String departmentName) {
+        this.departmentId = departmentId;
+        this.departmentName = departmentName;
+    }
+
+    public Department(){
+
+    }
 }

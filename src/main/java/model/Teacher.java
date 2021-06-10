@@ -13,7 +13,7 @@ public class Teacher extends User{
     private List<Course> listTeacherCourses = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "department_id", nullable = true)
     private Department teacherDepartment;
 
     public List<Course> getListTeacherCourses() {
@@ -23,7 +23,8 @@ public class Teacher extends User{
     public void setListTeacherCourses(List<Course> listTeacherCourses) {
         this.listTeacherCourses = listTeacherCourses;
     }
-    public Teacher(String userFirstName, String userLastName, String email, String role) {
-        super(userFirstName, userLastName, email, role);
+
+    public Teacher(String userFirstName, String userLastName, String email, String role, Gender gender) {
+        super(userFirstName, userLastName, email, role, gender);
     }
 }

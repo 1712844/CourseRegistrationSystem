@@ -1,7 +1,7 @@
 package model;
 
 import org.hibernate.annotations.Columns;
-
+import model.Gender;
 import javax.persistence.*;
 
 @Entity
@@ -25,17 +25,24 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false)
-    private String gender;
+    private Gender gender;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private Account userAccount;
 
-    public User(String userFirstName, String userLastName, String email, String role){
+    public User(String userFirstName, String userLastName, String email, String role, Gender gender) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.email = email;
         this.role = role;
+        this.gender = gender;
+    }
+
+    public User(){
+
     }
 
     public Long getUserId() {

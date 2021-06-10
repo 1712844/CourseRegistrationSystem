@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "Staff")
 public class Staff extends User{
 
-    public Staff(String userFirstName, String userLastName, String email, String role) {
-        super(userFirstName, userLastName, email, role);
+    public Staff(String userFirstName, String userLastName, String email, String role, Gender gender) {
+        super(userFirstName, userLastName, email, role, gender);
     }
 }

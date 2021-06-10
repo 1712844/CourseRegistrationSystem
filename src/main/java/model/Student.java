@@ -17,8 +17,10 @@ public class Student extends User {
     @ManyToMany(mappedBy = "listCourseStudents")
     List<Course> listStudentCourses = new ArrayList<>();
 
-    public Student(String userFirstName, String userLastName, String email, String role) {
-        super(userFirstName, userLastName, email, role);
+    public Student(String userFirstName, String userLastName, String email, String role, Gender gender, Integer studentYear, Class studentClass) {
+        super(userFirstName, userLastName, email, role, gender);
+        this.studentYear = studentYear;
+        this.studentClass = studentClass;
     }
 
     public Class getStudentClass() {

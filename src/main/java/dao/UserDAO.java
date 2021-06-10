@@ -1,19 +1,20 @@
 package dao;
 
-import model.Account;
+import model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
+
 import java.util.List;
 
-public class AccountDAO {
-    public void saveAccount(Account account){
+public class UserDAO {
+    public void saveUser(User user){
         Transaction transaction = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             transaction  = session.beginTransaction();
-            session.save(account);
+            session.save(user);
             transaction.commit();
-            System.out.println("Account saved!");
+            System.out.println("User saved!");
             session.close();
         } catch(Exception e){
             e.printStackTrace();
@@ -23,14 +24,14 @@ public class AccountDAO {
         }
     }
 
-    public void deleteAccount(Long accountId) {
+    public void deleteUser(Long userId) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Account account = session.get(Account.class, accountId);
-            if (account != null) {
-                session.delete(account);
-                System.out.println("Account is deleted!");
+            User user = session.get(User.class, userId);
+            if (user != null) {
+                session.delete(user);
+                System.out.println("User is deleted!");
             }
             transaction.commit();
             session.close();
@@ -42,13 +43,13 @@ public class AccountDAO {
         }
     }
 
-    public void updateAccount(Account account){
+    public void updateUser(User user){
         Transaction transaction = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             transaction  = session.beginTransaction();
-            session.update(account);
+            session.update(user);
             transaction.commit();
-            System.out.println("Account updated!");
+            System.out.println("User updated!");
             session.close();
         } catch(Exception e){
             e.printStackTrace();
@@ -57,12 +58,12 @@ public class AccountDAO {
             }
         }
     }
-    public Account getAccount(long accountId){
+    public User getUser(long userId){
         Transaction transaction = null;
-        Account account = null;
+        User user = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             transaction  = session.beginTransaction();
-            account = session.get(Account.class, accountId);
+            user = session.get(User.class, userId);
             transaction.commit();
             session.close();
         } catch(Exception e){
@@ -71,14 +72,14 @@ public class AccountDAO {
                 transaction.rollback();
             }
         }
-        return account;
+        return user;
     }
 
-    public List<Account> getAccounts() {
+    public List<User> getUsers() {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            List<Account> listAllAccount = session.createQuery("from Account", Account.class).list();
-            return listAllAccount;
+            List<User> listAllUser = session.createQuery("from User", User.class).list();
+            return listAllUser;
         }
     }
 }
